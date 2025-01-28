@@ -66,6 +66,10 @@ const header = { //header tömb létrehozása
 
     generateHeader(header) //Meghivom a függvényt
 
+    /**
+     * Ezzel a fügvénnyel a táblázatunkat tudjuk létrehozni
+     * 
+     */
     function renderTable(data){//Elkezdem megirni a render függvényt
         const tablebody = tbody;//Létrehozok egy tablebody-t aminek az értéke tbody
         tbody.innerHTML = ''; // tbody innerHtml-je üres string
@@ -105,6 +109,10 @@ const header = { //header tömb létrehozása
     
     renderTable(array) //Meghivom a renderTable függvényt és az array paramétert fogja kapni
 
+    /**
+     *  Ez a függvény azt ellenőrzi hogy egy adott input mező üres-e és ha igen akkor hibaüzenetet jelenit meg
+     * 
+     */
     function ValidateField(inputElement, ErrorMessage){//Függvényt definiálunk
         let valid = true;//A valid értéke igaz
         if(inputElement.value === ""){//Ha az inputElement üres
@@ -117,7 +125,10 @@ const header = { //header tömb létrehozása
         }
         return valid //Valid értékkel térek vissza
     }
-
+    /**
+     * Ezzel a függvény ellenőrzi két mező értékét és ha barmelyik üres akkor hibaüzenetet jelenit meg
+     * 
+     */
     function ValidateField2(firstElement, secondElement, ErrorMessage){ //Függvényt definiálunk
         let valid = true //A valid értéke igaz
         if(firstElement.value != "" && !ValidateField(secondElement, ErrorMessage)){ // Ellenőrizzük hogy a két mező közül az egyik kivan e töltve és ha igen akkor a másik mezőt validáljuk
@@ -129,6 +140,10 @@ const header = { //header tömb létrehozása
         return valid //A valid értékkel térünk vissza
     }
     
+    /**
+     * Ez a függvény táblázatunk fejlécét hozza létre
+     * 
+     */
     function generateHeader(headerW){ //Függvényt definiálunk
         const thead = document.createElement('thead'); //Létrehozok egy thead elemet
         table.appendChild(thead);//Hozzá appendelem a táblázathoz
@@ -141,6 +156,11 @@ const header = { //header tömb létrehozása
             }
          
         }
+
+    /**
+     * Ez a függvény a formunkat hozza létre
+     * 
+     */
         function generateForm(formD){  //Függvényt definiálunk
             const form = document.createElement('form') //Létrehozom a formot
             document.body.appendChild(form) //Hozzá appendelem a body-hoz
