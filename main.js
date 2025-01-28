@@ -82,7 +82,7 @@ const header = [ //header tömb létrehozása
     
             tablebody.appendChild(row); //Hozzá appendelem a sort
     
-            if (element.harcolo2 && element.hadero2) {//If elágazás létrehozása
+            if (element.harcolo2 && element.hadero2) {//Ha a harcolo2 és hadero2
                 const row1 = document.createElement('tr');//Létrehozok egy tr-t
     
                 const harcolo2 = document.createElement('td');//Létrehozok egy td-t
@@ -98,6 +98,19 @@ const header = [ //header tömb létrehozása
     }
     
     renderTable() //Meghivom a renderTable függvényt
+
+    function ValidateField(inputElement, ErrorMessage){//Függvényt definiálunk
+        let valid = true;//A valid értéke igaz
+        if(inputElement.value === ""){//Ha az inputElement üres
+            const parentElement = inputElement.parentElement //Az inputElement szülő elemét hozzá rendeljük a parentElementhez
+            const error = parentElement.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
+            if(error) { //Ha az error
+                error.innerHTML = ErrorMessage; // Kiirjuk a hibaüzenetet
+            }
+            valid = false // A valid változó értékét hamisra cseréljük
+        }
+        return valid //Valid értékkel térek vissza
+    }
     
     const form = document.getElementById("form") //Lekérem a html form id-ját
     form.addEventListener('submit', function(e){//Eseménykezelőt adok a form-hoz
@@ -123,31 +136,16 @@ const header = [ //header tömb létrehozása
     
         let valid = true; // A valid változó értéke igaz
     
-        if(harcnevV === ""){ // Ha az harc név mező üres
-            const parent = harcnevH.parentElement; // Eltárolom egy változóban a harc nevet
-            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
-            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
-                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
-            }
-            valid = false; // A valid változó értékét hamisra cseréljük
+        if(!ValidateField(harcnevH, "A mező kitöltése kötelező!")){ //Ha a függvényünk hamissal tér vissza akkor kiirja az error üzenetet
+            valid = false; //A valid értéke hamis lesz
         }
     
-        if(harcolo1V === ""){ // Ha az harcolo mező üres
-            const parent = harcolo1H.parentElement; // Eltárolom egy változóban a harcolót
-            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
-            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
-                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
-            }
-            valid = false; // A valid változó értékét hamisra cseréljük
+        if(!ValidateField(harcolo1H, "A mező kitöltése kötelező!")){ //Ha a függvényünk hamissal tér vissza akkor kiirja az error üzenetet
+            valid = false; //A valid értéke hamis lesz
         }
     
-        if(hadero1V === ""){ // Ha az haderő mező üres
-            const parent = hadero1H.parentElement; // Eltárolom egy változóban a haderőt
-            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
-            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
-                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
-            }
-            valid = false; // A valid változó értékét hamisra cseréljük
+        if(!ValidateField(hadero1H, "A mező kitöltése kötelező!")){ //Ha a függvényünk hamissal tér vissza akkor kiirja az error üzenetet
+            valid = false; //A valid értéke hamis lesz
         }
     
     if(valid){
