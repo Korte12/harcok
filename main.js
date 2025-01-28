@@ -1,10 +1,8 @@
-const header = [ //header tömb létrehozása
-    { 
+const header = { //header tömb létrehozása
         elso: "Harc megnevezése", // értékadás a tulajdonságnak
         masodik: "Szembenálló felek",// értékadás a tulajdonságnak
         harmadik : "Haderő"// értékadás a tulajdonságnak
     }
-    ];
     
     const array = [ // tömb létrehozása
     { 
@@ -39,26 +37,10 @@ const header = [ //header tömb létrehozása
     const table = document.createElement('table'); //Létrehozom a table-t
     document.body.appendChild(table);//Hozzá appendelem a body-hoz
 
-    const thead = document.createElement('thead');//Létrehozom a thead-et
-    table.appendChild(thead);//Hozzá appendelem a table-hez
-
-    const tr = document.createElement('tr');//Létrehozom a tr-t
-    thead.appendChild(tr);//Hozzá appendelem a thead-hez
-
     const tbody = document.createElement('tbody'); // Létrehozom a tbody-t
     table.appendChild(tbody); // Hozzá appendelem a table-hez
-
-    const harcnev = document.createElement('th')//Létrehozok egy th elemet
-    harcnev.innerHTML = header[0].elso //Megadom az értékét
-    tr.appendChild(harcnev);//Hozzá appendelem a sorhoz
-
-    const harcolo = document.createElement('th')//Létrehozok egy th elemet
-    harcolo.innerHTML = header[0].masodik//Megadom az értékét
-    tr.appendChild(harcolo)//Hozzá appendelem a sorhoz
-
-    const hadero = document.createElement('th');//Létrehozok egy th elemet
-    hadero.innerHTML = header[0].harmadik//Megadom az értékét
-    tr.appendChild(hadero)//Hozzá appendelem a sorhoz
+    
+    generateHeader(header) //Meghivom a függvényt
 
     function renderTable(){//Elkezdem megirni a render függvényt
         const tablebody = tbody;//Létrehozok egy tablebody-t aminek az értéke tbody
@@ -121,7 +103,20 @@ const header = [ //header tömb létrehozása
             valid = false //A valid értéke hamis
         }
         return valid //A valid értékkel térünk vissza
-    }   
+    }
+    
+    function generateHeader(headerW){ //Függvényt definiálunk
+        const thead = document.createElement('thead'); //Létrehozok egy thead elemet
+        table.appendChild(thead);//Hozzá appendelem a táblázathoz
+        const tr = document.createElement('tr');//Létrehozok egy sor elemet
+        thead.appendChild(tr);//Hozzá appendelem a fej részhez
+            for(const i in headerW){ //Végig iterálok a header objektumon
+                const th = document.createElement('th') //Létrehozok egy th elemet
+                th.innerHTML = headerW[i] //A th tartalma a header objektumban eltárolt értékek lesznek
+                tr.appendChild(th) //Hozzá appendeljük a sorhoz a th-t
+            }
+         
+        }
     
     const form = document.getElementById("form") //Lekérem a html form id-ját
     form.addEventListener('submit', function(e){//Eseménykezelőt adok a form-hoz
