@@ -1,0 +1,19 @@
+tbody td:nth-last-child(3) {
+    background-color: gold;
+}
+
+tbody tr td:last-child {
+    background-color: gold;
+}
+
+table th:nth-child(2) {
+    background-color: silver;
+}
+
+table, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.error {
+    color:red
+}
