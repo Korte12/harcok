@@ -39,14 +39,14 @@ const header = { //header tömb létrehozása
 
     const tbody = document.createElement('tbody'); // Létrehozom a tbody-t
     table.appendChild(tbody); // Hozzá appendelem a table-hez
-    
+
     generateHeader(header) //Meghivom a függvényt
 
-    function renderTable(){//Elkezdem megirni a render függvényt
+    function renderTable(data){//Elkezdem megirni a render függvényt
         const tablebody = tbody;//Létrehozok egy tablebody-t aminek az értéke tbody
         tbody.innerHTML = ''; // tbody innerHtml-je üres string
     
-        for (element of array) {//Elkezdem a for ciklust. Kiválasztom az array ,,element"-jét
+        for (element of data) {//Elkezdem a for ciklust. Kiválasztom az array datáját
             let row = document.createElement('tr');//Létrehozok egy tr-t
     
             const harcnevC = document.createElement('td'); //Létrehozok egy td-t
@@ -79,7 +79,7 @@ const header = { //header tömb létrehozása
         }
     }
     
-    renderTable() //Meghivom a renderTable függvényt
+    renderTable(array) //Meghivom a renderTable függvényt és az array paramétert fogja kapni
 
     function ValidateField(inputElement, ErrorMessage){//Függvényt definiálunk
         let valid = true;//A valid értéke igaz
@@ -180,5 +180,5 @@ const header = { //header tömb létrehozása
         }
     }
         thisForm.reset()//thisFormot vagyis a táblázatunkat resetelem
-        renderTable();//Meghivom a renderTable függvényt mégegyszer
+        renderTable(array);//Meghivom a renderTable függvényt mégegyszer és az array paramétert fogja kapni
     })
