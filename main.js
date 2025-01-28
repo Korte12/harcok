@@ -147,17 +147,35 @@ const header = [ //header tömb létrehozása
         if(!ValidateField(hadero1H, "A mező kitöltése kötelező!")){ //Ha a függvényünk hamissal tér vissza akkor kiirja az error üzenetet
             valid = false; //A valid értéke hamis lesz
         }
+
+        if(harcolo2V != "" && !ValidateField(hadero2H, "A mező kitöltése kötelező!")){ //Ellenörzöm hogy az harcolo2 üres e illetve függvénnyel validálok
+            valid = false //A valid értéke hamis lesz
+        }
+        if(hadero2V != "" && !ValidateField(harcolo2H, "A mező kitöltése kötelező!")){ //Ellenörzöm hogy az hadero2 üres e illetve függvénnyel validálok
+            valid = false //A valid értéke hamis lesz
+        }
     
     if(valid){
-        const new_person = { //Létrehozok egy új elemet
+        if(harcolo2V == "" && hadero2V == ""){
+        const hadero = { //Létrehozok egy új elemet
             harcnev: harcnevV, //Értéket adok
+            harcolo1: harcolo1V,//Értéket adok
+            hadero1: hadero1V,//Értéket adok
+            }
+        array.push(hadero)//Hozzárakom az arrayhez az új elemet
+
+        }
+        else {
+            const hadero = { //Létrehozok egy új elemet
+                harcnev: harcnevV, //Értéket adok
             harcolo1: harcolo1V,//Értéket adok
             harcolo2: harcolo2V,//Értéket adok
             hadero1: hadero1V,//Értéket adok
             hadero2: hadero2V//Értéket adok
+            }
+        array.push(hadero)//Hozzárakom az arrayhez az új elemet
         }
-        array.push(new_person)//Hozzárakom az arrayhez az új elemet
+    }
         thisForm.reset()//thisFormot vagyis a táblázatunkat resetelem
         renderTable();//Meghivom a renderTable függvényt mégegyszer
-    }
-})
+    })
