@@ -111,6 +111,17 @@ const header = [ //header tömb létrehozása
         }
         return valid //Valid értékkel térek vissza
     }
+
+    function ValidateField2(firstElement, secondElement, ErrorMessage){ //Függvényt definiálunk
+        let valid = true //A valid értéke igaz
+        if(firstElement.value != "" && !ValidateField(secondElement, ErrorMessage)){ // Ellenőrizzük hogy a két mező közül az egyik kivan e töltve és ha igen akkor a másik mezőt validáljuk
+            valid = false //A valid értéke hamis
+        }
+        if(secondElement.value != "" && !ValidateField(firstElement, ErrorMessage)){ // Ellenőrizzük hogy a két mező közül az egyik kivan e töltve és ha igen akkor a másik mezőt validáljuk
+            valid = false //A valid értéke hamis
+        }
+        return valid //A valid értékkel térünk vissza
+    }   
     
     const form = document.getElementById("form") //Lekérem a html form id-ját
     form.addEventListener('submit', function(e){//Eseménykezelőt adok a form-hoz
@@ -148,11 +159,8 @@ const header = [ //header tömb létrehozása
             valid = false; //A valid értéke hamis lesz
         }
 
-        if(harcolo2V != "" && !ValidateField(hadero2H, "A mező kitöltése kötelező!")){ //Ellenörzöm hogy az harcolo2 üres e illetve függvénnyel validálok
-            valid = false //A valid értéke hamis lesz
-        }
-        if(hadero2V != "" && !ValidateField(harcolo2H, "A mező kitöltése kötelező!")){ //Ellenörzöm hogy az hadero2 üres e illetve függvénnyel validálok
-            valid = false //A valid értéke hamis lesz
+        if(!ValidateField2(harcolo2H, hadero2H, "A mező kitöltése kötelező!")){ //Ha a függvényünk hamissal tér vissza akkor kiirja az error üzenetet
+            valid = false;//A valid értéke hamis lesz
         }
     
     if(valid){
