@@ -66,7 +66,7 @@ const header = { //header tömb létrehozása
 
     generateHeader(header) //Meghivom a függvényt
     
-    renderTable(array) //Meghivom a renderTable függvényt és az array paramétert fogja kapni
+    renderTable(array,tbody) //Meghivom a renderTable függvényt és az array paramétert fogja kapni
 
     const form = document.getElementById("form") //Lekérem a html form id-ját
     form.addEventListener('submit', function(e){//Eseménykezelőt adok a form-hoz
@@ -130,5 +130,5 @@ const header = { //header tömb létrehozása
         }
     }
         thisForm.reset()//thisFormot vagyis a táblázatunkat resetelem
-        renderTable(array);//Meghivom a renderTable függvényt mégegyszer és az array paramétert fogja kapni
+        renderTable(array, tbody);//Meghivom a renderTable függvényt mégegyszer és az array paramétert fogja kapni
     })
