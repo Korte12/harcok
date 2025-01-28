@@ -114,6 +114,43 @@ const header = [ //header tömb létrehozása
         const hadero1V = hadero1H.value///Eltárolom egy változóban az értéket
         const hadero2V = hadero2H.value//Eltárolom egy változóban az értéket
 
+        const thisForm = e.currentTarget //Az aktuális form
+        const errorElements = thisForm.querySelectorAll('.error') //Errorokat eltárolom egy változóban
+    
+        for(const i of errorElements){ //Végigmegyek az errorokon és "" ra állitom az értéküket
+            i.innerHTML = ""
+        }
+    
+        let valid = true; // A valid változó értéke igaz
+    
+        if(harcnevV === ""){ // Ha az harc név mező üres
+            const parent = harcnevH.parentElement; // Eltárolom egy változóban a harc nevet
+            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
+            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
+                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
+            }
+            valid = false; // A valid változó értékét hamisra cseréljük
+        }
+    
+        if(harcolo1V === ""){ // Ha az harcolo mező üres
+            const parent = harcolo1H.parentElement; // Eltárolom egy változóban a harcolót
+            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
+            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
+                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
+            }
+            valid = false; // A valid változó értékét hamisra cseréljük
+        }
+    
+        if(hadero1V === ""){ // Ha az haderő mező üres
+            const parent = hadero1H.parentElement; // Eltárolom egy változóban a haderőt
+            const errors = parent.querySelector(".error"); // Megkeressük az első elemet amin rajta van az error
+            if(errors != undefined) { // Ha találtunk ilyen mezőt akkor -->
+                errors.innerHTML = "A mező kitöltése kötelező!"; // Kiirjuk a hibaüzenetet
+            }
+            valid = false; // A valid változó értékét hamisra cseréljük
+        }
+    
+    if(valid){
         const new_person = { //Létrehozok egy új elemet
             harcnev: harcnevV, //Értéket adok
             harcolo1: harcolo1V,//Értéket adok
@@ -121,8 +158,8 @@ const header = [ //header tömb létrehozása
             hadero1: hadero1V,//Értéket adok
             hadero2: hadero2V//Értéket adok
         }
-        
         array.push(new_person)//Hozzárakom az arrayhez az új elemet
         thisForm.reset()//thisFormot vagyis a táblázatunkat resetelem
         renderTable();//Meghivom a renderTable függvényt mégegyszer
-    })
+    }
+})
